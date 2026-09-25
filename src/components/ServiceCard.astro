@@ -1,0 +1,35 @@
+---
+import type { Service } from "../data/site";
+
+interface Props {
+  service: Service;
+  delay: number;
+}
+
+const { service, delay } = Astro.props;
+const modalId = `modal-service-${service.id}`;
+---
+
+<article class={`service-card reveal delay-${delay}`}>
+  <div class="service-card-media">
+    <div class="overflow-hidden">
+      <img class="service-image" src={service.image} alt={service.title} />
+    </div>
+    <div class="service-icon">
+      <i class={service.icon}></i>
+    </div>
+  </div>
+  <div class="service-card-body">
+    <h3 class="font-bold text-[.8rem] text-[#10243b]">{service.title}</h3>
+    <p class="text-[.58rem] text-slate-400 mt-0.5">{service.subtitle}</p>
+    <ul class="check-list mt-3">
+      {service.items.map((item) => <li>{item}</li>)}
+    </ul>
+    <label
+      for={modalId}
+      class="detail-btn mt-4 flex justify-center items-center gap-1 rounded-full blue-gradient text-white py-2 text-[.62rem] font-semibold cursor-pointer"
+    >
+      Lihat Detail <i class="ri-arrow-right-line"></i>
+    </label>
+  </div>
+</article>

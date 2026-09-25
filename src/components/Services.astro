@@ -1,0 +1,25 @@
+---
+import { services } from "../data/site";
+import ServiceCard from "./ServiceCard.astro";
+import ServiceModal from "./ServiceModal.astro";
+---
+
+<section id="layanan" class="section bg-white">
+  <div class="container-page">
+    <div class="reveal">
+      <p class="section-label">Layanan Utama</p>
+      <h2 class="section-title">Layanan yang Kami Sediakan</h2>
+      <p class="section-desc">
+        Kami menyediakan berbagai layanan terbaik untuk memenuhi kebutuhan Anda, dengan
+        harga bersaing dan pelayanan profesional.
+      </p>
+    </div>
+
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      {services.map((service, i) => <ServiceCard service={service} delay={i + 1} />)}
+    </div>
+  </div>
+</section>
+
+<input type="radio" name="service-modal" id="modal-close" class="modal-toggle" checked />
+{services.map((service) => <ServiceModal service={service} />)}

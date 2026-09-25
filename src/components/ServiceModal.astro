@@ -1,0 +1,58 @@
+---
+import { site, type Service } from "../data/site";
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const modalId = `modal-service-${service.id}`;
+const titleId = `modal-title-${service.id}`;
+const modalImage = service.image.replace("w=700", "w=900");
+---
+
+<input type="radio" name="service-modal" id={modalId} class="modal-toggle" />
+<div class="service-modal" role="dialog" aria-labelledby={titleId}>
+  <label for="modal-close" class="modal-backdrop" aria-label="Tutup dialog"></label>
+  <div class="modal-panel">
+    <div class="modal-glow"></div>
+    <div class="modal-header">
+      <img src={modalImage} alt={service.title} />
+      <label for="modal-close" class="modal-close" aria-label="Tutup">
+        <i class="ri-close-line"></i>
+      </label>
+      <div class="modal-icon-float">
+        <i class={service.icon}></i>
+      </div>
+    </div>
+    <div class="modal-body">
+      <span class="modal-badge"><i class="ri-star-line"></i> Layanan Utama</span>
+      <h3 id={titleId} class="modal-title">{service.title}</h3>
+      <p class="modal-subtitle">{service.modalSubtitle}</p>
+      <div class="modal-placeholder">
+        <i class="ri-file-edit-line"></i>
+        <p>
+          Konten detail layanan sedang disiapkan.<br />
+          Silakan hubungi kami untuk info lengkap.
+        </p>
+      </div>
+      <p class="modal-list-title">Ringkasan Layanan</p>
+      <ul class="check-list mt-2">
+        {service.items.map((item) => <li>{item}</li>)}
+      </ul>
+      <div class="modal-footer">
+        <label for="modal-close" class="modal-btn modal-btn-secondary">
+          <i class="ri-close-circle-line"></i> Tutup
+        </label>
+        <a
+          href={site.whatsapp}
+          target="_blank"
+          rel="noopener"
+          class="modal-btn modal-btn-primary"
+        >
+          <i class="ri-whatsapp-line"></i> Hubungi
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

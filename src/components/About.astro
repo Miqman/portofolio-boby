@@ -1,0 +1,67 @@
+---
+import { site } from "../data/site";
+import InfoColumn from "./InfoColumn.astro";
+---
+
+<section id="tentang" class="bg-white pb-16">
+  <div class="container-page grid md:grid-cols-3">
+    <InfoColumn icon="ri-user-3-line" title="Tentang Saya" class="px-0 md:pr-8 reveal-left">
+      <p class="mt-4 text-[.66rem] text-slate-500 leading-6">
+        Saya Boby Jaksa Purnama, seorang yang bergerak di bidang layanan digital,
+        teknologi, dan berbagai kebutuhan harian. Dengan pengalaman dan ketulusan
+        melayani, saya berkomitmen memberikan yang terbaik untuk setiap pelanggan.
+      </p>
+      <a
+        href="#kontak"
+        class="inline-flex mt-4 rounded-full bg-brand-500 text-white px-5 py-2 text-[.62rem] font-semibold hover:bg-brand-600 transition-colors"
+      >
+        Selengkapnya <i class="ri-arrow-right-line"></i>
+      </a>
+    </InfoColumn>
+
+    <InfoColumn
+      icon="ri-star-fill"
+      title="Kenapa Memilih Saya?"
+      class="px-0 md:px-8 mt-8 md:mt-0 reveal delay-2"
+    >
+      <ul class="check-list mt-4">
+        <li>Pelayanan ramah & profesional</li>
+        <li>Harga bersaing dan transparan</li>
+        <li>Proses cepat dan mudah</li>
+        <li>Bisa online / offline</li>
+        <li>Siap membantu kapan saja</li>
+      </ul>
+    </InfoColumn>
+
+    <InfoColumn
+      id="kontak"
+      icon="ri-customer-service-2-line"
+      title="Kontak Saya"
+      class="px-0 md:pl-8 mt-8 md:mt-0 reveal-right delay-3"
+    >
+      <div class="mt-4 space-y-2 text-[.66rem] text-slate-500">
+        <p class="flex items-center gap-2">
+          <i class="ri-phone-line text-green-500"></i>
+          {site.phoneDisplay}
+        </p>
+        <p class="flex items-center gap-2">
+          <i class="ri-map-pin-line text-green-500"></i>
+          {site.location}
+        </p>
+        <p class="flex items-center gap-2">
+          <i class="ri-instagram-line text-pink-500"></i>
+          {site.instagram}
+        </p>
+      </div>
+
+      <a
+        href={site.whatsapp}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex mt-4 rounded-full bg-brand-500 text-white px-5 py-2 text-[.62rem] font-semibold hover:bg-brand-600 transition-all hover:-translate-y-0.5"
+      >
+        Hubungi Sekarang <i class="ri-arrow-right-line"></i>
+      </a>
+    </InfoColumn>
+  </div>
+</section>

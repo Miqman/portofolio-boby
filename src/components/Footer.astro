@@ -1,0 +1,26 @@
+---
+import { site } from "../data/site";
+import Logo from "./Logo.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="container-page py-5 flex flex-col md:flex-row items-center justify-between gap-4">
+    <Logo variant="footer" />
+
+    <p class="text-white/65 text-[.62rem] italic">“Kepuasan Anda adalah Prioritas Kami”</p>
+
+    <p class="text-white/35 text-[.5rem]">
+      © {year} {site.name}. All Rights Reserved.
+    </p>
+  </div>
+</footer>
+
+<button
+  id="backTop"
+  class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-brand-500 text-white shadow-xl shadow-blue-900/20 grid place-items-center hover:bg-brand-600 transition-colors"
+  aria-label="Kembali ke atas"
+>
+  <i class="ri-arrow-up-line text-lg"></i>
+</button>

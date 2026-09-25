@@ -1,0 +1,82 @@
+<script>
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+  );
+
+  document
+    .querySelectorAll(".reveal, .reveal-left, .reveal-right")
+    .forEach((el) => revealObserver.observe(el));
+
+  const navbar = document.getElementById("navbar");
+  const backTop = document.getElementById("backTop");
+
+  function handleScroll() {
+    if (!navbar || !backTop) return;
+
+    const y = window.scrollY;
+    navbar.classList.toggle("scrolled", y > 30);
+    backTop.classList.toggle("show", y > 500);
+
+    const sections = ["beranda", "tentang", "layanan", "produk", "kontak"];
+    let current = "beranda";
+
+    sections.forEach((id) => {
+      const section = document.getElementById(id);
+      if (!section) return;
+      if (section.getBoundingClientRect().top <= 130) current = id;
+    });
+
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+    });
+  }
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  handleScroll();
+
+  const menuButton = document.getElementById("menuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
+  let menuOpen = false;
+
+  menuButton?.addEventListener("click", () => {
+    if (!mobileMenu) return;
+    menuOpen = !menuOpen;
+    mobileMenu.style.maxHeight = menuOpen ? `${mobileMenu.scrollHeight}px` : "0px";
+    mobileMenu.style.opacity = menuOpen ? "1" : "0";
+  });
+
+  document.querySelectorAll(".mobile-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!mobileMenu) return;
+      menuOpen = false;
+      mobileMenu.style.maxHeight = "0px";
+      mobileMenu.style.opacity = "0";
+    });
+  });
+
+  backTop?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  const hero = document.querySelector<HTMLElement>(".hero");
+  const heroOrb = document.querySelector<HTMLElement>(".hero-orb");
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (window.innerWidth < 768 || !hero || !heroOrb) return;
+      const y = Math.min(window.scrollY, 500);
+      hero.style.backgroundPosition = `center calc(50% + ${y * 0.08}px)`;
+      heroOrb.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
+    },
+    { passive: true },
+  );
+</script>

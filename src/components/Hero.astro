@@ -1,0 +1,55 @@
+---
+import { heroFeatures } from "../data/site";
+---
+
+<section id="beranda" class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+
+  <div class="container-page relative z-10 hero-content">
+    <div class="max-w-[640px] pt-10">
+      <div class="reveal-left">
+        <p class="text-white/80 text-sm font-medium mb-2">Hallo, Saya</p>
+        <h1 class="hero-title text-white">Boby <span>Jaksa Purnama</span></h1>
+        <h2 class="mt-4 text-lg md:text-xl text-white font-semibold leading-snug">
+          Solusi Lengkap Kebutuhan Digital, Teknologi<br class="hidden md:block" />
+          dan Layanan Harian Anda!
+        </h2>
+        <p class="mt-4 max-w-xl text-white/70 text-xs md:text-sm leading-7">
+          Melayani dengan sepenuh hati, aman, cepat dan terpercaya. Berbagai layanan
+          dalam satu tempat, untuk memudahkan Anda.
+        </p>
+      </div>
+
+      <div class="mt-8 grid grid-cols-3 max-w-[510px] gap-4 reveal delay-2">
+        {
+          heroFeatures.map((feature) => (
+            <div class="hero-feature">
+              <span class="hero-feature-icon">
+                <i class={feature.icon}></i>
+              </span>
+              <span set:html={feature.html} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute right-[5%] bottom-[130px] z-10 hidden lg:block reveal-right delay-3">
+    <p
+      class="text-white text-3xl italic font-medium -rotate-6 text-right"
+      style="font-family: Georgia, serif"
+    >
+      Satu Platform<br />
+      Banyak Solusi!
+    </p>
+    <div class="ml-auto mt-3 w-44 h-1 rounded-full bg-brand-500 rotate-[-10deg]"></div>
+  </div>
+
+  <div class="hero-curve" aria-hidden="true">
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,8 Q720,40 1440,8 L1440,48 L0,48 Z" fill="#ffffff"></path>
+    </svg>
+  </div>
+</section>

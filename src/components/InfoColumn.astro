@@ -1,0 +1,18 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  class?: string;
+  id?: string;
+}
+
+const { icon, title, class: className, id } = Astro.props;
+---
+
+<div id={id} class:list={["info-column", className]}>
+  <div class="flex items-center gap-3">
+    <div class="info-icon"><i class={icon}></i></div>
+    <h3 class="font-bold text-sm">{title}</h3>
+  </div>
+  <slot />
+</div>

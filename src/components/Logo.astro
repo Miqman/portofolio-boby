@@ -1,0 +1,39 @@
+---
+import { site } from "../data/site";
+
+interface Props {
+  variant?: "nav" | "footer";
+}
+
+const { variant = "nav" } = Astro.props;
+const isFooter = variant === "footer";
+---
+
+<a href="#beranda" class="flex items-center gap-3 shrink-0">
+  <div
+    class:list={[
+      "w-10 h-10 rounded-md border grid place-items-center",
+      isFooter ? "border-white/10 bg-white/5" : "bg-brand-500/15 border-white/10",
+    ]}
+  >
+    <span
+      class:list={[
+        "font-extrabold italic",
+        isFooter ? "text-brand-500" : "text-white text-lg",
+      ]}>BP</span
+    >
+  </div>
+  <div class="leading-tight">
+    <div
+      class:list={[
+        "text-white font-bold font-heading",
+        isFooter ? "text-[.68rem]" : "text-[.72rem]",
+      ]}
+    >
+      {site.name}
+    </div>
+    <div class:list={[isFooter ? "text-white/40 text-[.48rem]" : "text-white/55 text-[.52rem]"]}>
+      {site.tagline}
+    </div>
+  </div>
+</a>
