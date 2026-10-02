@@ -1,0 +1,59 @@
+---
+import { certifications, skills, skillsIntro } from "../data/site";
+
+const titleId = "modal-title-skills";
+---
+
+<input type="radio" name="skills-modal" id="modal-skills-detail" class="modal-toggle" />
+<div class="service-modal" role="dialog" aria-labelledby={titleId}>
+  <label for="modal-skills-close" class="modal-backdrop" aria-label="Tutup dialog"></label>
+  <div class="modal-panel modal-panel-wide">
+    <div class="modal-glow"></div>
+    <div class="modal-header modal-header-compact">
+      <label for="modal-skills-close" class="modal-close" aria-label="Tutup">
+        <i class="ri-close-line"></i>
+      </label>
+      <div class="modal-icon-float">
+        <i class="ri-award-line"></i>
+      </div>
+    </div>
+    <div class="modal-body modal-body-scroll">
+      <span class="modal-badge"><i class="ri-stack-line"></i> {skillsIntro.label}</span>
+      <h3 id={titleId} class="modal-title">Detail {skillsIntro.title}</h3>
+      <p class="modal-subtitle">{skillsIntro.description}</p>
+
+      <p class="modal-list-title">Semua keahlian</p>
+      <ul class="skills-modal-list mt-3">
+        {
+          skills.map((skill) => (
+            <li class="skills-modal-item">
+              <div class="skills-modal-item-head">
+                <span class="skills-modal-item-name">
+                  <i class={skill.icon}></i>
+                  {skill.name}
+                </span>
+                <span class="skills-modal-item-pct">{skill.percent}%</span>
+              </div>
+              <div class="skill-meter skill-meter-light" role="presentation">
+                <div class="skill-meter-fill is-static" style={`width: ${skill.percent}%`}></div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="modal-list-title mt-6">Sertifikasi & pengalaman</p>
+      <ul class="check-list mt-2">
+        {certifications.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+
+      <div class="modal-footer">
+        <label for="modal-skills-close" class="modal-btn modal-btn-secondary">
+          <i class="ri-close-circle-line"></i> Tutup
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

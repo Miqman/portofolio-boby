@@ -1,0 +1,72 @@
+---
+import SkillsDetailModal from "./SkillsDetailModal.astro";
+import { skills, skillsIntro } from "../data/site";
+
+const skillsLeft = skills.slice(0, Math.ceil(skills.length / 2));
+const skillsRight = skills.slice(Math.ceil(skills.length / 2));
+---
+
+<section id="keahlian" class="section bg-white">
+  <div class="container-page skills-layout">
+    <div class="skills-intro reveal-left">
+      <p class="section-label">{skillsIntro.label}</p>
+      <h2 class="section-title">{skillsIntro.title}</h2>
+      <p class="section-desc">{skillsIntro.description}</p>
+      <label for="modal-skills-detail" class="skills-cta cursor-pointer">
+        Lihat Semua <i class="ri-arrow-right-line"></i>
+      </label>
+    </div>
+
+    <div class="skills-board reveal delay-2">
+      <div class="skills-col">
+        {
+          skillsLeft.map((skill, i) => (
+            <div
+              class={`skill-row reveal delay-${(i % 4) + 1}`}
+              style={`--skill-pct: ${skill.percent}%`}
+            >
+              <span class="skill-icon">
+                <i class={skill.icon}></i>
+              </span>
+              <div class="skill-body">
+                <div class="skill-head">
+                  <span class="skill-name">{skill.name}</span>
+                  <span class="skill-pct">{skill.percent}%</span>
+                </div>
+                <div class="skill-meter" role="presentation">
+                  <div class="skill-meter-fill"></div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <div class="skills-col">
+        {
+          skillsRight.map((skill, i) => (
+            <div
+              class={`skill-row reveal delay-${(i % 4) + 1}`}
+              style={`--skill-pct: ${skill.percent}%`}
+            >
+              <span class="skill-icon">
+                <i class={skill.icon}></i>
+              </span>
+              <div class="skill-body">
+                <div class="skill-head">
+                  <span class="skill-name">{skill.name}</span>
+                  <span class="skill-pct">{skill.percent}%</span>
+                </div>
+                <div class="skill-meter" role="presentation">
+                  <div class="skill-meter-fill"></div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <SkillsDetailModal />
+  <input type="radio" name="skills-modal" id="modal-skills-close" class="modal-toggle" checked />
+</section>

@@ -1,0 +1,34 @@
+---
+import { education, educationIntro } from "../data/site";
+---
+
+<section id="pendidikan" class="section bg-[var(--page)]">
+  <div class="container-page education-layout">
+    <div class="education-intro reveal-left">
+      <p class="section-label">{educationIntro.label}</p>
+      <h2 class="section-title">{educationIntro.title}</h2>
+      <p class="section-desc">{educationIntro.description}</p>
+    </div>
+
+    <div class="education-timeline-wrap reveal delay-2">
+      <div class="education-timeline" role="list">
+        {
+          education.map((item, i) => (
+            <>
+              {i > 0 ? <span class="education-connector" aria-hidden="true"></span> : null}
+              <article class="education-card" role="listitem">
+                <span class="education-card-icon">
+                  <i class={item.icon}></i>
+                </span>
+                <h3 class="education-card-level">{item.level}</h3>
+                <p class="education-card-school">{item.school}</p>
+                <p class="education-card-period">{item.period}</p>
+                <span class="education-card-badge">{item.status}</span>
+              </article>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

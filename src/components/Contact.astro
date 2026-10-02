@@ -1,0 +1,99 @@
+---
+import { contactIntro, contactSubjects, site } from "../data/site";
+---
+
+<section id="kontak" class="contact-section section">
+  <div class="contact-section-bg" aria-hidden="true"></div>
+  <div class="container-page contact-layout">
+    <div class="contact-intro reveal-left">
+      <p class="section-label">{contactIntro.label}</p>
+      <h2 class="section-title">{contactIntro.title}</h2>
+      <p class="section-desc">{contactIntro.description}</p>
+
+      <ul class="contact-methods">
+        <li>
+          <a href={site.whatsapp} target="_blank" rel="noopener" class="contact-method">
+            <span class="contact-method-icon contact-method-icon--wa">
+              <i class="ri-whatsapp-line"></i>
+            </span>
+            <span>
+              <strong>{site.phoneFormatted}</strong>
+              <small>WhatsApp</small>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${site.email}`} class="contact-method">
+            <span class="contact-method-icon">
+              <i class="ri-mail-line"></i>
+            </span>
+            <span>
+              <strong>{site.email}</strong>
+              <small>Email</small>
+            </span>
+          </a>
+        </li>
+        <li>
+          <span class="contact-method contact-method--static">
+            <span class="contact-method-icon">
+              <i class="ri-map-pin-line"></i>
+            </span>
+            <span>
+              <strong>{site.locationShort}</strong>
+              <small>Lokasi</small>
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <form id="contactForm" class="contact-form reveal-right delay-2">
+      <div class="contact-form-row">
+        <label class="contact-field">
+          <span>Nama Lengkap</span>
+          <input type="text" name="name" required autocomplete="name" placeholder="Nama Anda" />
+        </label>
+        <label class="contact-field">
+          <span>Email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            autocomplete="email"
+            placeholder="email@example.com"
+          />
+        </label>
+      </div>
+      <label class="contact-field">
+        <span>Subjek</span>
+        <select name="subject" required>
+          <option value="" disabled selected>Pilih subjek</option>
+          {contactSubjects.map((subject) => <option value={subject}>{subject}</option>)}
+        </select>
+      </label>
+      <label class="contact-field">
+        <span>Pesan</span>
+        <textarea name="message" required rows="5" placeholder="Tulis pesan Anda di sini"></textarea>
+      </label>
+      <div class="contact-form-actions">
+        <button type="submit" class="contact-submit">
+          <i class="ri-send-plane-fill"></i> Kirim Pesan
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script define:vars={{ whatsapp: site.whatsapp }}>
+  const form = document.getElementById("contactForm");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const subject = String(data.get("subject") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+    const text = `Halo, saya ${name} (${email}).\nSubjek: ${subject}\n\n${message}`;
+    window.open(`${whatsapp}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+  });
+</script>

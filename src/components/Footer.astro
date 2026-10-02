@@ -1,19 +1,38 @@
 ---
-import { site } from "../data/site";
-import Logo from "./Logo.astro";
+import { site, socialLinks } from "../data/site";
 
 const year = new Date().getFullYear();
 ---
 
-<footer>
-  <div class="container-page py-5 flex flex-col md:flex-row items-center justify-between gap-4">
-    <Logo variant="footer" />
+<footer class="footer-bar">
+  <div class="container-page footer-bar-inner">
+    <a href="#beranda" class="footer-brand">
+      <span class="footer-brand-mark">BP</span>
+      <span class="footer-brand-text">
+        {site.name}
+        <span class="footer-brand-sep" aria-hidden="true">|</span>
+        {site.portfolioLabel}
+      </span>
+    </a>
 
-    <p class="text-white/65 text-[.62rem] italic">“Kepuasan Anda adalah Prioritas Kami”</p>
-
-    <p class="text-white/35 text-[.5rem]">
-      © {year} {site.name}. All Rights Reserved.
-    </p>
+    <div class="footer-meta">
+      <p class="footer-copy">© {year} {site.name}. All rights reserved.</p>
+      <div class="footer-social">
+        {
+          socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target={link.href === "#" ? undefined : "_blank"}
+              rel={link.href === "#" ? undefined : "noopener"}
+              aria-label={link.label}
+              class:list={[{ "pointer-events-none opacity-40": link.href === "#" }]}
+            >
+              <i class={link.icon}></i>
+            </a>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </footer>
 
