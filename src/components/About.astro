@@ -1,53 +1,82 @@
 ---
-import { aboutStats } from "../data/site";
-import InfoColumn from "./InfoColumn.astro";
+import {
+  aboutDetails,
+  aboutIntro,
+  aboutStats,
+  site,
+} from "../data/site";
 ---
 
 <section id="tentang" class="section bg-white">
-  <div class="container-page">
-    <div class="reveal">
-      <p class="section-label">Tentang Saya</p>
-      <h2 class="section-title">Pengalaman & Kepercayaan Pelanggan</h2>
-      <p class="section-desc">
-        Saya Boby Jaksa Purnama, bergerak di layanan digital, teknologi, dan kebutuhan
-        harian. Fokus saya: proses jelas, harga transparan, dan hasil yang bisa
-        diandalkan.
-      </p>
+  <div class="container-page about-layout">
+    <div class="about-body">
+      <figure class="about-photo about-photo-frame reveal-left">
+        <img
+          src={site.aboutPhoto}
+          alt={`Foto ${site.name}`}
+          width="560"
+          height="700"
+          loading="lazy"
+          decoding="async"
+          class="about-photo-img"
+        />
+        <figcaption class="about-photo-quote">
+          <em>
+            {aboutIntro.quoteLines.map((line, i) => (
+              <>
+                {i > 0 ? <br /> : null}
+                {line}
+              </>
+            ))}
+          </em>
+          <span class="about-photo-quote-line" aria-hidden="true"></span>
+        </figcaption>
+      </figure>
+
+      <div class="about-main reveal">
+        <p class="section-label">{aboutIntro.label}</p>
+        <h2 class="section-title">{site.name}</h2>
+        <p class="about-bio">{aboutIntro.bio}</p>
+
+        <ul class="about-details">
+          {
+            aboutDetails.map((item) => (
+              <li class="about-detail-row">
+                <span class="about-detail-icon" aria-hidden="true">
+                  <i class={item.icon}></i>
+                </span>
+                <span class="about-detail-text">
+                  <span class="about-detail-label">{item.label}</span>
+                  {item.label === "Email" ? (
+                    <a class="about-detail-value" href={`mailto:${item.value}`}>
+                      {item.value}
+                    </a>
+                  ) : (
+                    <span class="about-detail-value">{item.value}</span>
+                  )}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
 
-    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="about-stats-panel reveal-right delay-2">
       {
-        aboutStats.map((stat, i) => (
-          <div class={`stat-card reveal delay-${i + 1}`}>
-            <p class="stat-card-value">{stat.value}</p>
-            <p class="stat-card-label">{stat.label}</p>
+        aboutStats.map((stat) => (
+          <div class:list={["about-stat-row", { "about-stat-row-accent": stat.accent }]}>
+            <span class="about-stat-icon" aria-hidden="true">
+              <i class={stat.icon}></i>
+            </span>
+            <div class="about-stat-body">
+              <p class:list={["about-stat-value", { "is-accent": stat.accent }]}>{stat.value}</p>
+              <p class="about-stat-title">{stat.title}</p>
+              <p class="about-stat-subtitle">{stat.subtitle}</p>
+            </div>
           </div>
         ))
       }
-    </div>
-
-    <div class="mt-10 grid md:grid-cols-2 gap-8 md:gap-12">
-      <InfoColumn icon="ri-user-3-line" title="Ringkasan" class="px-0 reveal-left">
-        <p class="mt-4 text-sm text-slate-500 leading-7">
-          Dari servis HP, PPOB, rental mobil, maintenance listrik, hingga langganan
-          aplikasi premium — saya menjalankan operasional langsung dan mendampingi
-          pelanggan dari konsultasi sampai selesai.
-        </p>
-      </InfoColumn>
-
-      <InfoColumn
-        icon="ri-star-fill"
-        title="Kenapa Memilih Saya?"
-        class="px-0 reveal-right delay-2"
-      >
-        <ul class="check-list mt-4">
-          <li>Pelayanan ramah & profesional</li>
-          <li>Harga bersaing dan transparan</li>
-          <li>Proses cepat dan mudah</li>
-          <li>Bisa online / offline</li>
-          <li>Siap membantu kapan saja</li>
-        </ul>
-      </InfoColumn>
     </div>
   </div>
 </section>

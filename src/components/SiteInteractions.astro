@@ -28,7 +28,7 @@
     const sections = [
       "beranda",
       "tentang",
-      "layanan",
+      // "layanan",
       "portofolio",
       "keahlian",
       "pendidikan",
@@ -75,16 +75,27 @@
   });
 
   const hero = document.querySelector<HTMLElement>(".hero");
-  const heroOrb = document.querySelector<HTMLElement>(".hero-orb");
 
   window.addEventListener(
     "scroll",
     () => {
-      if (window.innerWidth < 768 || !hero || !heroOrb) return;
+      if (window.innerWidth < 768 || !hero) return;
       const y = Math.min(window.scrollY, 500);
       hero.style.backgroundPosition = `center calc(50% + ${y * 0.08}px)`;
-      heroOrb.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
     },
     { passive: true },
   );
+
+  document.querySelectorAll(".modal-body, .modal-body-scroll").forEach((el) => {
+    let scrollTimer: ReturnType<typeof setTimeout> | undefined;
+    el.addEventListener(
+      "scroll",
+      () => {
+        el.classList.add("is-scrolling");
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => el.classList.remove("is-scrolling"), 900);
+      },
+      { passive: true },
+    );
+  });
 </script>

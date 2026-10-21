@@ -2,7 +2,7 @@ export const site = {
   name: "Boby Jaksa Purnama",
   tagline: "Solusi Digital & Layanan Terpercaya",
   title: "Boby Jaksa Purnama — Solusi Digital & Layanan Terpercaya",
-  profession: "Penyedia Layanan Digital, Teknologi & Kebutuhan Harian",
+  profession: "Digital Service & Tech Enthusiast",
   phoneDisplay: "08968098610",
   phoneFormatted: "+62 896 8098 0610",
   whatsapp: "https://wa.me/6289698098610",
@@ -12,14 +12,17 @@ export const site = {
   location: "Bogor & Sekitarnya",
   locationShort: "Bogor, Jawa Barat",
   portfolioLabel: "Personal Portfolio",
+  birthDate: "14 Mei 2001",
   /** Taruh file CV di public/cv.pdf */
   cvUrl: "/cv.pdf",
+  /** Ganti dengan foto portrait (mis. public/images/profile-boby.jpg) */
+  aboutPhoto: "/images/profile-boby.png",
 };
 
 export const navLinks = [
   { href: "#beranda", label: "Beranda" },
   { href: "#tentang", label: "Tentang" },
-  { href: "#layanan", label: "Layanan" },
+  // { href: "#layanan", label: "Layanan" },
   { href: "#portofolio", label: "Portofolio" },
   { href: "#keahlian", label: "Keahlian" },
   { href: "#pendidikan", label: "Pendidikan" },
@@ -52,10 +55,39 @@ export const socialLinks = [
   { icon: "ri-tiktok-fill", href: "#", label: "TikTok" },
 ] as const;
 
+export const aboutIntro = {
+  label: "Tentang Saya",
+  quoteLines: ["Proses", "adalah bagian", "dari hasil"] as const,
+  bio: "Saya adalah pribadi yang memiliki ketertarikan di bidang teknologi, layanan digital, dan pengembangan diri. Dengan pengalaman di berbagai bidang jasa dan digital, saya selalu berusaha memberikan pelayanan terbaik serta solusi yang tepat untuk setiap kebutuhan.",
+} as const;
+
+export const aboutDetails = [
+  { icon: "ri-user-line", label: "Nama", value: site.name },
+  { icon: "ri-calendar-line", label: "Tanggal Lahir", value: site.birthDate },
+  { icon: "ri-map-pin-line", label: "Domisili", value: site.locationShort },
+  { icon: "ri-mail-line", label: "Email", value: site.email },
+] as const;
+
 export const aboutStats = [
-  { value: "5+", label: "Tahun melayani pelanggan" },
-  { value: "5", label: "Layanan utama dalam satu tempat" },
-  { value: "24/7", label: "Siap dihubungi kapan saja" },
+  {
+    value: "5+",
+    title: "Tahun Pengalaman",
+    subtitle: "di Bidang Layanan & Teknologi",
+    icon: "ri-user-3-line",
+  },
+  {
+    value: "100+",
+    title: "Pelanggan & Klien",
+    subtitle: "yang Telah Dilayani",
+    icon: "ri-team-line",
+    accent: true,
+  },
+  {
+    value: "100%",
+    title: "Komitmen",
+    subtitle: "Memberikan Pelayanan Terbaik",
+    icon: "ri-heart-line",
+  },
 ] as const;
 
 export type PortfolioItem = {
@@ -100,6 +132,15 @@ export const skillsIntro = {
   title: "Skill & Keahlian",
   description:
     "Berbagai keahlian yang saya miliki untuk mendukung pekerjaan dan proyek yang saya kerjakan.",
+  cta: "Lihat Sertifikat",
+} as const;
+
+/** Konten modal keahlian — hanya yang tidak ditampilkan di section depan */
+export const skillsModalIntro = {
+  badge: "Bukti & Dokumentasi",
+  title: "Sertifikat & Pelatihan",
+  description:
+    "Sertifikat dan bukti kompetensi yang melengkapi keahlian di atas. Daftar skill lengkap sudah ditampilkan di halaman ini.",
 } as const;
 
 export const skills: Skill[] = [
@@ -121,10 +162,22 @@ export const skills: Skill[] = [
   { name: "Kerja Tim", percent: 85, icon: "ri-team-line" },
 ];
 
-export const certifications = [
-  "Pengalaman lapangan servis HP & elektronik",
-  "Operasional PPOB & top-up digital",
-] as const;
+export type CertificateItem = {
+  title: string;
+  issuer?: string;
+  period?: string;
+  /** Nama file di src/assets/images/ (tanpa ekstensi) */
+  image: "sertif-bob-1";
+};
+
+export const certificates: CertificateItem[] = [
+  {
+    title: "Sertifikat Kompetensi",
+    issuer: "Sesuaikan lembaga / program",
+    period: "Sesuaikan tahun",
+    image: "sertif-bob-1",
+  },
+];
 
 export type EducationStage = {
   level: string;
@@ -178,16 +231,18 @@ export const education: EducationStage[] = [
   },
 ];
 
-export const heroFeatures = [
-  { icon: "ri-shield-check-line", html: "Aman<br />& Terpercaya" },
-  { icon: "ri-flashlight-line", html: "Proses Cepat<br />& Mudah" },
-  { icon: "ri-time-line", html: "Siap Melayani<br />24 Jam" },
-] as const;
+export const heroIntro = {
+  greeting: "Halo, Saya",
+  bio: "Melayani dengan sepenuh hati di bidang layanan digital dan teknologi. Berpengalaman membantu pelanggan dengan solusi yang aman, cepat, dan terpercaya.",
+  asideQuote: ["Mari Berkolaborasi", "Untuk Hasil Terbaik!"],
+} as const;
 
 export type Service = {
   id: string;
   title: string;
   subtitle: string;
+  /** Ringkas untuk panel kanan hero */
+  heroDetail: string;
   modalSubtitle: string;
   icon: string;
   image: string;
@@ -199,6 +254,7 @@ export const services: Service[] = [
     id: "hp",
     title: "Service HP",
     subtitle: "Ganti & perbaikan",
+    heroDetail: "Perbaikan & Sparepart",
     modalSubtitle: "Ganti & perbaikan komponen handphone",
     icon: "ri-smartphone-line",
     image:
@@ -215,6 +271,7 @@ export const services: Service[] = [
     id: "ppob",
     title: "Jualan PPOB",
     subtitle: "Pulsa & pembayaran",
+    heroDetail: "Pulsa, Data, Tagihan, Top Up",
     modalSubtitle: "Pulsa, token, dan pembayaran digital",
     icon: "ri-wallet-3-line",
     image:
@@ -231,6 +288,7 @@ export const services: Service[] = [
     id: "mobil",
     title: "Sewa Jasa Mobil",
     subtitle: "Rental & perjalanan",
+    heroDetail: "Rental mobil acara, nikahan & travel",
     modalSubtitle: "Rental mobil & layanan perjalanan",
     icon: "ri-car-line",
     image:
@@ -247,6 +305,7 @@ export const services: Service[] = [
     id: "listrik",
     title: "Maintenance Kelistrikan",
     subtitle: "Instalasi & perbaikan",
+    heroDetail: "Instalasi listrik & perbaikan",
     modalSubtitle: "Instalasi & perbaikan kelistrikan",
     icon: "ri-flashlight-line",
     image:
@@ -263,6 +322,7 @@ export const services: Service[] = [
     id: "premium",
     title: "Jualan Aplikasi Premium",
     subtitle: "Langganan digital",
+    heroDetail: "Netflix, Canva, Spotify, ChatGPT",
     modalSubtitle: "Langganan aplikasi digital favorit",
     icon: "ri-vip-crown-line",
     image:
