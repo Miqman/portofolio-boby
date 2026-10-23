@@ -68,7 +68,15 @@ export const aboutDetails = [
   { icon: "ri-mail-line", label: "Email", value: site.email },
 ] as const;
 
-export const aboutStats = [
+export type AboutStat = {
+  value: string;
+  title: string;
+  subtitle: string;
+  icon: string;
+  accent?: boolean;
+};
+
+export const aboutStats: AboutStat[] = [
   {
     value: "5+",
     title: "Tahun Pengalaman",
@@ -88,7 +96,7 @@ export const aboutStats = [
     subtitle: "Memberikan Pelayanan Terbaik",
     icon: "ri-heart-line",
   },
-] as const;
+];
 
 export type PortfolioItem = {
   title: string;
