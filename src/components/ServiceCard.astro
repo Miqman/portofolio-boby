@@ -3,14 +3,13 @@ import type { Service } from "../data/site";
 
 interface Props {
   service: Service;
-  delay: number;
 }
 
-const { service, delay } = Astro.props;
+const { service } = Astro.props;
 const modalId = `modal-service-${service.id}`;
 ---
 
-<article class={`service-card reveal delay-${delay}`}>
+<article class="service-card">
   <div class="service-card-media">
     <div class="overflow-hidden">
       <img class="service-image" src={service.image} alt={service.title} />

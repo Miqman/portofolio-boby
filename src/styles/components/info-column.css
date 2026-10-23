@@ -1,0 +1,16 @@
+/* ---------- Info columns ---------- */
+.info-column + .info-column {
+  border-left: 1px solid #dbe5ef;
+}
+
+.info-icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #0785f5;
+  color: white;
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+}

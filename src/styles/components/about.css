@@ -1,0 +1,241 @@
+/* ---------- About (tentang) ---------- */
+.about-layout {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .about-layout {
+    grid-template-columns: 1fr minmax(240px, 290px);
+    gap: 2rem 2.25rem;
+    align-items: center;
+  }
+
+  .about-body {
+    display: grid;
+    grid-template-columns: minmax(200px, 260px) 1fr;
+    gap: 2rem 2.25rem;
+    align-items: stretch;
+    min-height: 0;
+  }
+}
+
+.about-body {
+  display: grid;
+  gap: 2rem;
+}
+
+.about-photo {
+  margin: 0;
+}
+
+@media (max-width: 1023px) {
+  .about-photo-frame {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+
+  .about-photo-img {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+.about-photo-frame {
+  position: relative;
+  height: 100%;
+  min-height: 220px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #e2ebf5;
+  box-shadow: var(--shadow-card);
+  background: var(--page);
+}
+
+.about-photo-img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about-photo-quote {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  margin: 0;
+  padding: 2rem 0.75rem 0.75rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.72rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: #fff;
+  background: linear-gradient(180deg, transparent 0%, rgba(6, 26, 49, 0.82) 100%);
+}
+
+.about-photo-quote-line {
+  display: block;
+  margin-top: 0.35rem;
+  width: 4.5rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--primary);
+  transform: rotate(-4deg);
+}
+
+.about-main .section-title {
+  margin-top: 2px;
+}
+
+.about-bio {
+  margin-top: 0.85rem;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: #61748a;
+}
+
+.about-details {
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.about-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.about-detail-icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #0785f5;
+  color: #fff;
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+}
+
+.about-detail-text {
+  display: grid;
+  gap: 0.1rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.about-detail-label {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.about-detail-value {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.about-detail-value:hover {
+  color: var(--primary);
+}
+
+.about-stats-panel {
+  border-radius: 1rem;
+  border: 1px solid #e2ebf5;
+  background: var(--page);
+  padding: 1rem 1.1rem;
+  box-shadow: var(--shadow-card);
+}
+
+.about-stat-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #e2ebf5;
+}
+
+.about-stat-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.about-stat-row:first-child {
+  padding-top: 0;
+}
+
+.about-stat-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(7, 133, 245, 0.12);
+  color: var(--primary);
+  flex: 0 0 auto;
+  font-size: 1rem;
+}
+
+.about-stat-value {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #10233a;
+}
+
+.about-stat-value.is-accent {
+  color: var(--primary);
+}
+
+.about-stat-title {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #10233a;
+}
+
+.about-stat-subtitle {
+  margin: 0.15rem 0 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.about-stat-row-accent .about-stat-subtitle {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.portfolio-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: white;
+  border: 1px solid #e8eef5;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(8, 84, 151, 0.12);
+}
+
+.portfolio-card-media img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-card-body {
+  padding: 1rem 1.1rem 1.15rem;
+}

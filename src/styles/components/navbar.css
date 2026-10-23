@@ -1,0 +1,44 @@
+/* ---------- Navbar ---------- */
+#navbar {
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+#navbar.scrolled {
+  background: rgba(5, 26, 49, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(2, 24, 45, 0.18);
+}
+
+.nav-link {
+  position: relative;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.72rem;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #fff;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -18px;
+  height: 2px;
+  background: #0785f5;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+.nav-link.active::after,
+.nav-link:hover::after {
+  transform: scaleX(1);
+}

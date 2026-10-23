@@ -15,8 +15,8 @@ import ServiceModal from "./ServiceModal.astro";
       </p>
     </div>
 
-    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-      {services.map((service, i) => <ServiceCard service={service} delay={i + 1} />)}
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 reveal delay-2">
+      {services.map((service) => <ServiceCard service={service} />)}
     </div>
   </div>
 </section>

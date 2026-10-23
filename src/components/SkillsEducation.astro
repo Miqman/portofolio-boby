@@ -12,7 +12,10 @@ const skillsRight = skills.slice(Math.ceil(skills.length / 2));
       <p class="section-label">{skillsIntro.label}</p>
       <h2 class="section-title">{skillsIntro.title}</h2>
       <p class="section-desc">{skillsIntro.description}</p>
-      <label for="modal-skills-detail" class="skills-cta cursor-pointer">
+      <label
+        for="modal-skills-detail"
+        class="btn-primary mt-5 hover:bg-brand-600 hover:-translate-y-px"
+      >
         {skillsIntro.cta} <i class="ri-arrow-right-line"></i>
       </label>
     </div>
@@ -21,10 +24,7 @@ const skillsRight = skills.slice(Math.ceil(skills.length / 2));
       <div class="skills-col">
         {
           skillsLeft.map((skill, i) => (
-            <div
-              class={`skill-row reveal delay-${(i % 4) + 1}`}
-              style={`--skill-pct: ${skill.percent}%`}
-            >
+            <div class="skill-row" style={`--skill-scale: ${skill.percent / 100}`}>
               <span class="skill-icon">
                 <i class={skill.icon}></i>
               </span>
@@ -44,10 +44,7 @@ const skillsRight = skills.slice(Math.ceil(skills.length / 2));
       <div class="skills-col">
         {
           skillsRight.map((skill, i) => (
-            <div
-              class={`skill-row reveal delay-${(i % 4) + 1}`}
-              style={`--skill-pct: ${skill.percent}%`}
-            >
+            <div class="skill-row" style={`--skill-scale: ${skill.percent / 100}`}>
               <span class="skill-icon">
                 <i class={skill.icon}></i>
               </span>

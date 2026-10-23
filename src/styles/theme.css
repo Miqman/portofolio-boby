@@ -1,0 +1,72 @@
+/* Design tokens — sumber tunggal untuk Tailwind + CSS komponen */
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-heading: "Space Grotesk", system-ui, sans-serif;
+
+  --color-brand-50: #eff8ff;
+  --color-brand-100: #dceeff;
+  --color-brand-500: #1688ff;
+  --color-brand-600: #0878ee;
+  --color-brand-700: #0565c9;
+  --color-brand-900: #06223f;
+
+  --color-page: #f5f9fd;
+  --color-surface: #ffffff;
+  --color-text: #10243b;
+  --color-muted: #61748a;
+  --color-navy: #061a31;
+  --color-navy-2: #082746;
+
+  --shadow-soft: 0 10px 35px rgba(5, 55, 105, 0.1);
+  --shadow-card: 0 8px 25px rgba(8, 84, 151, 0.1);
+}
+
+:root {
+  --primary: var(--color-brand-500);
+  --navy: var(--color-navy);
+  --navy-2: var(--color-navy-2);
+  --surface: var(--color-surface);
+  --page: var(--color-page);
+  --text: var(--color-text);
+  --muted: #64748b;
+  --nav-height: 72px;
+  --content-max: 1180px;
+  --content-gutter: 16px;
+}
+
+html {
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--page);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.hero-title {
+  font-family: var(--font-heading);
+}
+
+.section {
+  padding-block: 72px;
+}
+
+#navbar .navbar-row {
+  height: var(--nav-height);
+}

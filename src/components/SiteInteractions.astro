@@ -2,13 +2,13 @@
   const revealObserver = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        observer.unobserve(el);
+        requestAnimationFrame(() => el.classList.add("is-visible"));
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+    { threshold: 0.08, rootMargin: "0px 0px -5% 0px" },
   );
 
   document
@@ -18,37 +18,61 @@
   const navbar = document.getElementById("navbar");
   const backTop = document.getElementById("backTop");
 
-  function handleScroll() {
-    if (!navbar || !backTop) return;
+  const sectionIds = [
+    "beranda",
+    "tentang",
+    "portofolio",
+    "keahlian",
+    "pendidikan",
+    "kontak",
+  ];
+  const sectionEls = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null);
 
-    const y = window.scrollY;
-    navbar.classList.toggle("scrolled", y > 30);
-    backTop.classList.toggle("show", y > 500);
+  let activeSection = "beranda";
+  let navbarScrolled = false;
+  let backTopVisible = false;
 
-    const sections = [
-      "beranda",
-      "tentang",
-      // "layanan",
-      "portofolio",
-      "keahlian",
-      "pendidikan",
-      "kontak",
-    ];
+  function syncNavActiveSection() {
     let current = "beranda";
-
-    sections.forEach((id) => {
-      const section = document.getElementById(id);
-      if (!section) return;
-      if (section.getBoundingClientRect().top <= 130) current = id;
-    });
-
+    for (const section of sectionEls) {
+      if (section.getBoundingClientRect().top <= 130) current = section.id;
+    }
+    if (current === activeSection) return;
+    activeSection = current;
     document.querySelectorAll(".nav-link").forEach((link) => {
       link.classList.toggle("active", link.getAttribute("href") === "#" + current);
     });
   }
 
-  window.addEventListener("scroll", handleScroll, { passive: true });
-  handleScroll();
+  function syncScrollChrome(y: number) {
+    const nextScrolled = y > 30;
+    if (navbar && nextScrolled !== navbarScrolled) {
+      navbarScrolled = nextScrolled;
+      navbar.classList.toggle("scrolled", nextScrolled);
+    }
+
+    const nextBackTop = y > 500;
+    if (backTop && nextBackTop !== backTopVisible) {
+      backTopVisible = nextBackTop;
+      backTop.classList.toggle("show", nextBackTop);
+    }
+  }
+
+  let scrollRaf = 0;
+  function onScroll() {
+    if (scrollRaf) return;
+    scrollRaf = requestAnimationFrame(() => {
+      scrollRaf = 0;
+      syncScrollChrome(window.scrollY);
+      syncNavActiveSection();
+    });
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  syncScrollChrome(window.scrollY);
+  syncNavActiveSection();
 
   const menuButton = document.getElementById("menuButton");
   const mobileMenu = document.getElementById("mobileMenu");
@@ -70,21 +94,23 @@
     });
   });
 
-  backTop?.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const scrollBehavior: ScrollBehavior = prefersReducedMotion ? "auto" : "smooth";
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+      const target = document.querySelector(href);
+      if (!(target instanceof HTMLElement)) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: scrollBehavior, block: "start" });
+    });
   });
 
-  const hero = document.querySelector<HTMLElement>(".hero");
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (window.innerWidth < 768 || !hero) return;
-      const y = Math.min(window.scrollY, 500);
-      hero.style.backgroundPosition = `center calc(50% + ${y * 0.08}px)`;
-    },
-    { passive: true },
-  );
+  backTop?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: scrollBehavior });
+  });
 
   document.querySelectorAll(".modal-body, .modal-body-scroll").forEach((el) => {
     let scrollTimer: ReturnType<typeof setTimeout> | undefined;

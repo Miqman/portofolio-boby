@@ -1,0 +1,35 @@
+@utility container-page {
+  @apply mx-auto w-full max-w-[1180px] px-4;
+}
+
+@utility section-label {
+  @apply text-brand-500 text-xs font-bold uppercase tracking-wider;
+}
+
+@utility section-title {
+  @apply mt-1 font-heading text-[clamp(1.65rem,3vw,2.2rem)] font-extrabold leading-[1.15] text-[#10233a];
+}
+
+@utility section-desc {
+  @apply mt-2.5 max-w-[680px] text-[0.88rem] leading-[1.75] text-[#61748a];
+}
+
+@utility btn-primary {
+  @apply inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-full bg-brand-500 px-5 py-2.5 text-xs font-bold text-white transition-colors;
+}
+
+@utility btn-secondary {
+  @apply inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-xs font-bold text-slate-700 transition-colors;
+}
+
+@utility blue-gradient {
+  background: linear-gradient(135deg, #0785f5 0%, #0d67e6 100%);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}

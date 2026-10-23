@@ -13,10 +13,10 @@ import { portfolio } from "../data/site";
       </p>
     </div>
 
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5 reveal delay-1">
       {
-        portfolio.map((item, i) => (
-          <article class={`portfolio-card reveal delay-${(i % 3) + 1}`}>
+        portfolio.map((item) => (
+          <article class="portfolio-card">
             <div class="portfolio-card-media">
               <img src={item.image} alt={item.title} loading="lazy" />
             </div>
