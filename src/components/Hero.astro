@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets";
+// import { Image } from "astro:assets";
 import bgHero from "../assets/images/bg-hero.avif";
-import dummyPerson from "../assets/images/dummy-person.png";
+// import personHero from "../assets/images/person-hero.png";
 import { heroIntro, services, site, socialLinks } from "../data/site";
 ---
 
@@ -13,17 +13,17 @@ import { heroIntro, services, site, socialLinks } from "../data/site";
   <div class="hero-toning" aria-hidden="true"></div>
   <div class="hero-vignette" aria-hidden="true"></div>
 
-  <div class="hero-person-wrap reveal delay-1">
+  <!-- <div class="hero-person-wrap reveal delay-1">
     <Image
-      src={dummyPerson}
-      alt={`Foto ${site.name}`}
+      src={personHero}
+      alt={`Foto Boby Jaksa Purnama`}
       widths={[480, 720, 960]}
       sizes="(max-width: 1023px) 78vw, 480px"
       class="hero-person"
       loading="eager"
       decoding="async"
     />
-  </div>
+  </div> -->
 
   <div class="hero-stage">
     <div class="container-page hero-shell">

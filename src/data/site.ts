@@ -16,7 +16,7 @@ export const site = {
   /** Taruh file CV di public/cv.pdf */
   cvUrl: "/cv.pdf",
   /** Ganti dengan foto portrait (mis. public/images/profile-boby.jpg) */
-  aboutPhoto: "/images/profile-boby.png",
+  aboutPhoto: "/images/photo-profile.avif",
 };
 
 export const navLinks = [
@@ -44,7 +44,11 @@ export const contactSubjects = [
 ] as const;
 
 export const socialLinks = [
-  { icon: "ri-whatsapp-line", href: "https://wa.me/6289698098610", label: "WhatsApp" },
+  {
+    icon: "ri-whatsapp-line",
+    href: "https://wa.me/6289698098610",
+    label: "WhatsApp",
+  },
   {
     icon: "ri-instagram-line",
     href: "https://instagram.com/bobyjaksa.purnama",
@@ -108,21 +112,24 @@ export type PortfolioItem = {
 export const portfolio: PortfolioItem[] = [
   {
     title: "Perbaikan & ganti LCD HP",
-    description: "Servis handphone untuk pelanggan lokal dengan komponen terpilih dan garansi proses.",
+    description:
+      "Servis handphone untuk pelanggan lokal dengan komponen terpilih dan garansi proses.",
     role: "Teknisi & koordinasi layanan",
     image:
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=80",
   },
   {
     title: "Transaksi PPOB harian",
-    description: "Pulsa, paket data, token listrik, dan pembayaran tagihan dengan proses cepat.",
+    description:
+      "Pulsa, paket data, token listrik, dan pembayaran tagihan dengan proses cepat.",
     role: "Operator & support pelanggan",
     image:
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=700&q=80",
   },
   {
     title: "Rental mobil acara",
-    description: "Antar-jemput dan kebutuhan perjalanan di Bogor dan sekitarnya.",
+    description:
+      "Antar-jemput dan kebutuhan perjalanan di Bogor dan sekitarnya.",
     role: "Koordinasi perjalanan & driver",
     image:
       "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=700&q=80",
